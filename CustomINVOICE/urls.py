@@ -19,6 +19,6 @@ from generateInvoice import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', views.home, name='home'),
-    path('invoice/', views.invoice),
+    path('', views.home, name='home'),
+    path('invoice/', views.invoice, name='invoice')
 ]

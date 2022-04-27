@@ -36,10 +36,6 @@ def draw_item_table(canvas, item_data):
     ]))
     t_item.wrapOn(canvas, 400, 100)
     t_item.drawOn(canvas, 34, 140)
-    canvas.setFont("CenturyGothicRegular", 20)
-    canvas.drawString(425, 118, 'Total')
-    canvas.setFont("CenturyGothicBold", 20)
-    canvas.drawString(500, 118, '4000/-')
 
 
 def rewrite_pdf(packet, response):
@@ -52,3 +48,18 @@ def rewrite_pdf(packet, response):
     output.write(response)
     packet.seek(0)
     return response
+
+
+def item_data(charge_str):
+    main_list = []
+    total = 0
+    for item in range(1, 26):
+        small_list = [item]
+        main_list.append(small_list)
+    item_list = charge_str.split(" $ ")
+    for i in range(len(item_list)):
+        s_split = item_list[i].split(" ^ ")
+        total = total + int(s_split[1]) if len(s_split) > 1 else total
+        for j in s_split:
+            main_list[i].append(j)
+    return main_list, total
