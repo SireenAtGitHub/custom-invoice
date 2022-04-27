@@ -1,7 +1,12 @@
 from django.http import HttpResponse
 import io
+from django.shortcuts import render
 from . import udf
 from reportlab.pdfgen import canvas
+
+
+def home(request):
+    return render(request, 'base.html')
 
 
 def invoice(request):
