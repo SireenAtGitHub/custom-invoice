@@ -13,7 +13,10 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import django_heroku
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -22,7 +25,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'edw+x821-rkp##oxvvyp#^jsvr0p8sdq$5+)917+xm-++hak9z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 

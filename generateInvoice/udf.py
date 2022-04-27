@@ -1,7 +1,7 @@
 from PyPDF2 import PdfFileWriter, PdfFileReader
 import os
 from django.templatetags.static import static
-from reportlab.platypus import Table, TableStyle
+from reportlab.platypus import Table, TableStyle, Image
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.pdfmetrics import registerFontFamily
 from reportlab.pdfbase.ttfonts import TTFont
@@ -18,6 +18,7 @@ def draw_customer_details(canvas, data):
     t = Table(data, colWidths=160, rowHeights=30)
     t.setStyle(TableStyle([
         ('FONTNAME', (0, 0), (0, -1), 'CenturyGothicBold'),
+        ('FONTWEIGHT', (0, 0), (0, -1), 1),
         ('ALIGN', (0, 0), (0, -1), 'RIGHT'),
         ('FONTSIZE', (0, 0), (0, -1), 15),
     ]))
@@ -26,6 +27,10 @@ def draw_customer_details(canvas, data):
 
 
 def draw_item_table(canvas, item_data):
+    image = Image(os.path.abspath(os.getcwd() + '/static/1649230731942.png'), height=110, width=146)
+    t_image = Table([[image]])
+    t_image.wrapOn(canvas, 400, 100)
+    t_image.drawOn(canvas, 37, 655)
     t_item = Table(item_data, colWidths=(65, 390, 90), rowHeights=18)
     t_item.setStyle(TableStyle([
         ('FONTNAME', (0, 0), (-1, -1), 'CenturyGothicRegular'),
