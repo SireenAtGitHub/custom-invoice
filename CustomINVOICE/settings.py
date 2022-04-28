@@ -22,11 +22,13 @@ DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'edw+x821-rkp##oxvvyp#^jsvr0p8sdq$5+)917+xm-++hak9z'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "customgarage.herokuapp.com"
+]
 
 # Application definition
 
@@ -123,4 +125,4 @@ STATICFILES_DIR = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'root')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
