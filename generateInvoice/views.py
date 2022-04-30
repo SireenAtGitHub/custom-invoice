@@ -24,7 +24,6 @@ def invoice(request):
     dt_string = now.strftime("%d-%m-%Y")
     data = [[dt_string], [request.data['cname']],  ["+91 " + request.data['phone']]]
     udf.draw_customer_details(can, data)
-    # can.drawInlineImage(os.path.abspath(os.getcwd() + '/static/1649230731942.png'), 3*.25, 3*.25, 100, 100)
     # ###### NUMBER PLATE #######
     can.setFont("CenturyGothicBold", 14)
     can.drawString(146, 627, request.data['number_plate'].upper())
