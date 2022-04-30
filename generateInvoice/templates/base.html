@@ -1,71 +1,121 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
+{% load static %}
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
     <title>Custom Garage</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static 'generateInvoice/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'generateInvoice/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'generateInvoice/vendor/aos/aos.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'generateInvoice/nav-main.css' %}">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="shortcut icon" href="{% static 'generateInvoice/logo.png' %}">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'generateInvoice/css/style.css' %}" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: OnePage - v4.7.0
+    * Template URL: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
 </head>
+
 <body>
-<header class="header">
-    <h1 class="logo"><a href="{% url 'home' %}">Custom Garage</a></h1>
-</header>
-<main role="main" class="container mt-3">
-    <input type="hidden" value="{% url 'invoice' %}" id="url">
-    <input type="hidden" value="{% url 'home' %}" id="home">
-    {% csrf_token %}
-    <div class="form-group">
-        <label for="inputPNumber">Customer Name</label>
-        <input type="text" class="form-control" id="inputName" name="cname" placeholder="Enter Customer Name">
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+        <h1 class="logo"><a href="{% url 'home' %}">Custom Garage</a></h1>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="{% url 'home' %}">Home</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
     </div>
-    <div class="form-group">
-        <label for="inputNPlate">Vehicle Number</label>
-        <input type="text" class="form-control" id="inputNPlate" name="b_plate" placeholder="Enter Vehicle Number">
-    </div>
-    <div class="form-group">
-        <label for="inputPNumber">Phone Number</label>
-        <input type="text" class="form-control" id="inputPNumber" name="phone" placeholder="Enter Phone Number" maxlength="10">
-    </div>
-    <hr class="mt-4 mb-4" style="border: 2px solid grey">
-    <div class="form-row">
-        <div class="col-md-9 mb-3">
-            <label>Item Name</label>
-            <input type="text" class="form-control" placeholder="Enter Item Description" name="item" required>
-            <div class="invalid-tooltip">
-                Enter Item Description
-            </div>
+</header><!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+        <input type="hidden" value="{% url 'invoice' %}" id="url">
+        <input type="hidden" value="{% url 'home' %}" id="home">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="inputName">Customer Name</label>
+            <input type="text" class="form-control" id="inputName" name="cname" placeholder="Enter Customer Name">
         </div>
-        <div class="col-md-3 mb-3">
-            <label>Item Price</label>
-            <input type="number" class="form-control" placeholder="Item Price" name="price" required>
-            <div class="invalid-tooltip">
-                Enter Item Price
-            </div>
+        <div class="form-group">
+            <label for="inputNPlate">Vehicle Number</label>
+            <input type="text" class="form-control" id="inputNPlate" name="b_plate" placeholder="Enter Vehicle Number">
         </div>
-        <hr>
+        <div class="form-group">
+            <label for="inputPNumber">Phone Number</label>
+            <input type="text" class="form-control" id="inputPNumber" name="phone" placeholder="Enter Phone Number"
+                   maxlength="10">
+        </div>
+        <hr class="mt-4 mb-4" style="border: 2px solid grey">
+        <div class="form-row">
+            <div class="col-md-9 mb-3">
+                <label>Item Name</label>
+                <input type="text" class="form-control" placeholder="Enter Item Description" name="item" required>
+                <div class="invalid-tooltip">
+                    Enter Item Description
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label>Item Price</label>
+                <input type="number" class="form-control" placeholder="Item Price" name="price" required>
+                <div class="invalid-tooltip">
+                    Enter Item Price
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="mb-2">
+            <button type="button" class="btn btn-secondary" id="append">+ Add Item</button>
+        </div>
+        <button type="submit" class="btn btn-primary mb-4 mt-3" id="idForm">Generate PDF</button>
     </div>
-    <div class="mb-2">
-        <button type="button" class="btn btn-secondary" id="append">+ Add Item</button>
-    </div>
-    <button type="submit" class="btn btn-primary mb-4 mt-3" id="idForm">Generate PDF</button>
-</main>
-</body>
+
+</section><!-- End Hero -->
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<script src="{% static 'generateInvoice/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'generateInvoice/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'generateInvoice/vendor/swiper/swiper-bundle.min.js' %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="{% static 'generateInvoice/nav-main.js' %}"></script>
-<script src="{% static 'generateInvoice/add-item.js' %}"></script>
-<script src="{% static 'generateInvoice/api-call.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<!-- Template Main JS File -->
+<script src="{% static 'generateInvoice/js/main.js' %}"></script>
+<script src="{% static 'generateInvoice/js/add-item.js' %}"></script>
+<script src="{% static 'generateInvoice/js/api-call.js' %}"></script>
 <script id="data_id" type="text/plain">
 
             <div class="col-md-9 mb-3">
@@ -86,5 +136,8 @@
                 <label>Delete</label>
                 <button type="button" class="btn btn-danger remove_this" id="remove"><span class="bi bi-trash"></span></button>
             </div>
+
 </script>
+</body>
+
 </html>
