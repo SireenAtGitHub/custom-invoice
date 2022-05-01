@@ -24,7 +24,6 @@ $(document).ready(function(){
             type: "POST",
             data: data,
             success: function(response) {
-                console.log(response.size);
                 var binaryData = []
                 binaryData.push(response)
                 var link=document.createElement('a');
@@ -55,7 +54,7 @@ function generate_str(name, price){
         str += name_array[i] + " ^ " + price_array[i];
         str += " $ ";
     }
-    return str
+    return str;
 }
 
 function validateForm(){
