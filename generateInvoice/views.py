@@ -29,7 +29,7 @@ def invoice(request):
     can.drawString(146, 627, request.data['number_plate'].upper())
     can.line(146, 625, 233, 625)
     # ###### ITEM DATA #######
-    item_data, total = udf.item_data(request.data['items'])
+    item_data, total = udf.item_data(request.data['items'][:-3])
     udf.draw_item_table(can, item_data)
     can.setFont("CenturyGothicRegular", 20)
     can.drawString(425, 118, 'Total')

@@ -56,6 +56,8 @@ def rewrite_pdf(packet, response):
 
 
 def item_data(charge_str):
+    print(len(charge_str))
+    print(charge_str)
     main_list = []
     total = 0
     for item in range(1, 26):
