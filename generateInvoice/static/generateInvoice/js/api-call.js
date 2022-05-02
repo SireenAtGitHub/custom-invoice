@@ -26,11 +26,10 @@ $(document).ready(function(){
             success: function(response) {
                 var binaryData = []
                 binaryData.push(response)
-                var link=document.createElement('a');
-                link.href =window.URL.createObjectURL(new Blob(binaryData, {type: "application/pdf"}));
-                window.open(link);
-        }
-    });
+                var fileURL =window.URL.createObjectURL(new Blob(binaryData, {type: "application/pdf"}));
+                window.open(fileURL);
+            }
+        });
     });
 });
 
