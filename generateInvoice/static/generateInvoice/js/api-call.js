@@ -27,10 +27,8 @@ $(document).ready(function(){
                 var binaryData = []
                 binaryData.push(response)
                 var link=document.createElement('a');
-                link.href=window.URL.createObjectURL(new Blob(binaryData, {type: "application/pdf"}));
-                link.download="INVOICE" + plate.toUpperCase() + ".pdf";
-                link.click();
-                window.location.replace($("#home").val());
+                link.href =window.URL.createObjectURL(new Blob(binaryData, {type: "application/pdf"}));
+                window.open(link);
         }
     });
     });
