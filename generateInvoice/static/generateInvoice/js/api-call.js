@@ -1,10 +1,10 @@
 $(document).ready(function () {
-  $("#idForm").click(function (e) {
+  $('#invoiceForm').submit(function(e) {
+    e.preventDefault();
     if (validateForm()) {
-      return false;
+      return;
     }
     data = {};
-    e.preventDefault();
     name = $("[name=item]").serialize();
     name = decodeURI(name);
     price = $("[name=price]").serialize();
@@ -29,6 +29,11 @@ $(document).ready(function () {
           new Blob(binaryData, { type: "application/pdf" })
         );
         window.open(fileURL);
+        // to reset the form
+        $('#invoiceForm').trigger("reset");
+        $('.remove_this').each(function(){
+            $(this).trigger('click');
+        })
       },
     });
   });
