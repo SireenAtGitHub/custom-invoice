@@ -71,6 +71,8 @@
         <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
             <input type="hidden" value="{% url 'invoice' %}" id="url">
             <input type="hidden" value="{% url 'home' %}" id="home">
+
+        <form id="invoiceForm" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 <label for="inputName">Customer Name</label>
@@ -90,7 +92,7 @@
             <div class="form-row">
                 <div class="col-md-9 mb-3">
                     <label id=''>1. Item Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Item Description" name="item" required>
+                    <input type="text" class="form-control" placeholder="Enter Item Description" name="item">
                     <div class="invalid-tooltip">
                         Enter Item Description
                     </div>
@@ -108,6 +110,8 @@
                 <button type="button" class="btn btn-secondary" id="append">+ Add Item</button>
             </div>
             <button type="submit" class="btn btn-primary mb-4 mt-3" id="idForm">Generate PDF</button>
+        </form>
+
         </div>
 
     </section><!-- End Hero -->
@@ -136,14 +140,14 @@
 
             <div class="col-md-9 mb-3">
                 <label id="item_label">Item Name</label>
-                     <input type="text" class="form-control" placeholder="Enter Item Description" required name="item" id="item">
+                     <input type="text" class="form-control" placeholder="Enter Item Description" name="item" id="item">
                 <div class="invalid-tooltip">
                     Enter Item Description
                 </div>
             </div>
             <div class="col-md-2 mb-3">
                 <label>Item Price</label>
-                <input type="number" class="form-control" placeholder="Item Price" required name="price">
+                <input type="number" class="form-control" placeholder="Item Price" name="price">
                 <div class="invalid-tooltip">
                     Enter Item Price
                 </div>
