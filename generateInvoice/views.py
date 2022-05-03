@@ -1,7 +1,8 @@
 import datetime
 from datetime import datetime
 from django.http import HttpResponse
-import io, os
+import io
+import os
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from . import udf
@@ -22,7 +23,8 @@ def invoice(request):
     # CUSTOMER DATA
     now = datetime.now()
     dt_string = now.strftime("%d-%m-%Y")
-    data = [[dt_string], [request.data['cname']],  ["+91 " + request.data['phone']]]
+    data = [[dt_string], [request.data['cname']],
+            ["+91 " + request.data['phone']]]
     udf.draw_customer_details(can, data)
     # ###### NUMBER PLATE #######
     can.setFont("CenturyGothicBold", 14)
