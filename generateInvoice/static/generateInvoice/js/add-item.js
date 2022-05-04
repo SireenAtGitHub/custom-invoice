@@ -13,6 +13,16 @@ $(document).ready(function () {
             elms[i].childNodes[0].nodeValue = i + 2 + ". Item Name";
         }
     });
+    $("#c_total").click(function (e) {
+        var elms = document.querySelectorAll("[name='price']");
+        var total = 0;
+        for (var i = 0; i < elms.length; i++) {
+            total += parseInt(document.getElementsByName("price")[i].value);
+        }
+        total = isNaN(total) ? 0 + "/-" : total + "/-";
+        $("#total").text(total);
+    });
+
     jQuery(document).on("click", ".remove_this", function () {
         jQuery(this).parent().prev().prev().remove();
         jQuery(this).parent().prev().remove();
