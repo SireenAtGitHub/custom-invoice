@@ -144,6 +144,9 @@ h1, h2, h3, h4, h5, h6 {
   #header .logo {
     font-size: 28px;
   }
+  #total,#idForm{
+    width: 100%;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -1661,4 +1664,22 @@ hr {
   width: 96%;
   background-color:#FFFFFF;
   height: 1px;
+}
+
+.largerSize{
+  font-size: x-large;
+}
+.alignRight {
+  text-align: right;
+}
+.noPadding{
+ padding: 0%; 
+}
+
+#total{
+  width: inherit;
+}
+.itemSR{
+  text-align: center;
+  font-size: large;
 }

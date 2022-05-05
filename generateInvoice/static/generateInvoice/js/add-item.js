@@ -1,36 +1,55 @@
 $(document).ready(function () {
     $("#append").click(function (e) {
+        e.preventDefault();
         var elms = document.querySelectorAll("[id='item']");
         if (elms.length > 23) {
             alert("You can not add more than 25 items.");
             return false;
         }
         var text = $("#data_id").html();
-        e.preventDefault();
-        $(".form-row").append(text);
-        var elms = document.querySelectorAll("[id='item_label']");
-        for (var i = 0; i < elms.length; i++) {
-            elms[i].childNodes[0].nodeValue = i + 2 + ". Item Name";
-        }
+        $("#itemRows").append(text);
+        rearrangeSR();
     });
-    $("#c_total").click(function (e) {
-        var elms = document.querySelectorAll("[name='price']");
-        var total = 0;
-        for (var i = 0; i < elms.length; i++) {
-            total += parseInt(document.getElementsByName("price")[i].value);
+    function rearrangeSR(){
+        var elms = document.querySelectorAll(".itemSR");
+        for (var i = 1; i < elms.length; i++) {
+            elms[i].childNodes[0].nodeValue = i + 1 + ".";
         }
-        total = isNaN(total) ? 0 + "/-" : total + "/-";
-        $("#total").text(total);
+    }
+
+    $(document).on("keyup","input[name='price']",function(e){
+        if(e.target.value !== ''){
+            e.target.classList.add('alignRight')
+        }else{
+            e.target.classList.remove('alignRight')
+        }
+        calcTotal();
     });
+    
+    function calcTotal(){
+        let total = 0;
+        $("input[name='price']").each(function (e) {
+            if(this.value !== ''){
+                total += parseInt(this.value);
+            }
+        });
+        $('#total').text(total);
+    }
+
+    // $("#c_total").click(function (e) {
+    //     var elms = document.querySelectorAll("[name='price']");
+    //     var total = 0;
+    //     for (var i = 0; i < elms.length; i++) {
+    //         total += parseInt(document.getElementsByName("price")[i].value);
+    //     }
+    //     total = isNaN(total) ? 0 + "/-" : total + "/-";
+    //     $("#total").text(total);
+    // });
 
     jQuery(document).on("click", ".remove_this", function () {
-        jQuery(this).parent().prev().prev().remove();
-        jQuery(this).parent().prev().remove();
-        jQuery(this).parent().remove();
-        var elms = document.querySelectorAll("[id='item_label']");
-        for (var i = 0; i < elms.length; i++) {
-            elms[i].childNodes[0].nodeValue = i + 2 + ". Item Name";
-        }
+        jQuery(this).parent().parent('.row').remove();
+        calcTotal();
+        rearrangeSR();
         return false;
     });
 });

@@ -89,29 +89,47 @@
                     placeholder="Enter Phone Number" maxlength="10">
             </div>
             <hr class="mt-4 mb-4" style="border: 2px solid grey">
-            <div class="form-row">
-                <div class="col-md-9 mb-3">
-                    <label id=''>1. Item Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Item Description" name="item">
-                    <div class="invalid-tooltip">
-                        Enter Item Description
+            <h4>Items</h4>
+            <div id="itemRows">
+                <div class="row">
+                    <div class="col-md-1 mb-3 align-self-center itemSR">
+                        1. 
                     </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label>Item Price</label>
-                    <input type="number" class="form-control" placeholder="Enter Item Price" name="price" max="">
-                    <div class="invalid-tooltip">
-                        Enter Item Price
+                    <div class="col-md-8 mb-3">
+                        <!-- <label id=''>1. Item Name</label> -->
+                        <input type="text" class="form-control" placeholder="Enter Item Description" name="item">
+                        <div class="invalid-tooltip">
+                            Enter Item Description
+                        </div>
                     </div>
+                    <div class="col-md-2 mb-3">
+                        <!-- <label>Item Price</label> -->
+                        <input type="number" class="form-control" placeholder="Enter Item Price" name="price" max="">
+                        <div class="invalid-tooltip">
+                            Enter Item Price
+                        </div>
+                    </div>
+                    <div class="col-md-1 mb-3">
+    
+                    </div>
+                    <!-- <hr> -->
                 </div>
-                <hr>
             </div>
-            <div class="mb-2">
-                <h3>
-                    <button type="button" class="btn btn-info" id="c_total">Count Total</button>
-                    <span class="badge badge-success" id="total">0/-</span>
-                </h3>
+            <div class="row">
+                <div class="col-md-9 alignRight largerSize">
+                    Total Price
+                </div>
+                <div class="col-md-2 mb-3">
+                    <!-- <h3> -->
+                        <!-- <button type="button" class="btn btn-info" id="c_total">Count Total</button> -->
+                        <span class="badge badge-success largerSize alignRight" id="total">0</span>
+                    <!-- </h3> -->
+                </div>
+                <div class="col-md-1 mb-3">
+
+                </div>
             </div>
+            
             
             <hr>
             <div class="mb-2">
@@ -145,26 +163,29 @@
     <script src="{% static 'generateInvoice/js/api-call.js' %}"></script>
     <script src="{% static 'generateInvoice/js/validate.js' %}"></script>
     <script id="data_id" type="text/plain">
-
-            <div class="col-md-9 mb-3">
-                <label id="item_label">Item Name</label>
+        <div class="row">
+            <div class="col-md-1 mb-3 align-self-center itemSR">
+                2.
+            </div>
+            <div class="col-md-8 mb-3">
+                <!-- <label id="item_label">Item Name</label> -->
                      <input type="text" class="form-control" placeholder="Enter Item Description" name="item" id="item">
                 <div class="invalid-tooltip">
                     Enter Item Description
                 </div>
             </div>
             <div class="col-md-2 mb-3">
-                <label>Item Price</label>
-                <input type="number" class="form-control" placeholder="Item Price" name="price">
+                <!-- <label>Item Price</label> -->
+                <input type="number" class="form-control" placeholder="Enter Item Price" name="price">
                 <div class="invalid-tooltip">
                     Enter Item Price
                 </div>
             </div>
             <div class="col-md-1 mb-3">
-                <label>Delete</label>
+                <!-- <label>Delete</label> -->
                 <button type="button" class="btn btn-danger remove_this" id="remove"><span class="bi bi-trash"></span></button>
             </div>
-
+        </div>
 </script>
 </body>
 
