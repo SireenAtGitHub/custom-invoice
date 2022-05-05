@@ -13,7 +13,7 @@ $(document).ready(function () {
     function rearrangeSR(){
         var elms = document.querySelectorAll(".itemSR");
         for (var i = 1; i < elms.length; i++) {
-            elms[i].childNodes[0].nodeValue = i + 1 + ".";
+            elms[i].childNodes[0].nodeValue = "Item " + (i + 1) + ".";
         }
     }
 
