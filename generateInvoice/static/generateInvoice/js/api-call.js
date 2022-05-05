@@ -29,15 +29,18 @@ $(document).ready(function () {
                     new Blob(binaryData, { type: "application/pdf" })
                 );
                 window.open(fileURL);
-                // to reset the form
-                $("#invoiceForm").trigger("reset");
-                $(".remove_this").each(function () {
-                    $(this).trigger("click");
-                });
+                resetForm();
             },
         });
     });
 });
+function resetForm() { 
+    $("#invoiceForm").trigger("reset");
+    $(".remove_this").each(function () {
+        $(this).trigger("click");
+    });
+    $("input[name='price']").removeClass('alignRight');
+}
 
 function generate_str(name, price) {
     name_split = name.split("&");
