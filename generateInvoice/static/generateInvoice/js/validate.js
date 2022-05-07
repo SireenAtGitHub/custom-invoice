@@ -23,7 +23,7 @@ function validateForm() {
         }
     }
     phone_num = $("#inputPNumber").val();
-    if (phone_num.length < 10) {
+    if (phone_num.length < 10 && phone_num.length != 0) {
         alert("Enter valid phone number");
         return true;
     }

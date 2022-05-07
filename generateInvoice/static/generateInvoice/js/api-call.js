@@ -5,16 +5,18 @@ $(document).ready(function () {
             return;
         }
         data = {};
-        name = $("[name=item]").serialize();
-        name = decodeURI(name);
+        i_names = $("[name=item]").serialize();
+        names = decodeURI(i_names);
         price = $("[name=price]").serialize();
         price = decodeURI(price);
         c_name = $("#inputName").val();
         plate = $("#inputNPlate").val();
         p_number = $("#inputPNumber").val();
-        str = generate_str(name, price);
+        str = generate_str(names, price);
         data["cname"] = c_name;
-        data["phone"] = p_number;
+        if (p_number.length == 10){
+            data["phone"] = p_number;
+        }
         data["number_plate"] = plate;
         data["items"] = str;
         data["csrfmiddlewaretoken"] = "{{ csrf_token }}";
