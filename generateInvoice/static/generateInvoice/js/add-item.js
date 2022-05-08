@@ -24,7 +24,16 @@ $(document).ready(function () {
             e.target.classList.remove('alignRight')
         }
         calcTotal();
-    });  
+    });
+    function calcTotal(){
+        let total = 0;
+        $("input[name='price']").each(function (e) {
+            if(this.value !== ''){
+                total += parseInt(this.value);
+            }
+        });
+        $('#total').text(total);
+    }
 
     // $("#c_total").click(function (e) {
     //     var elms = document.querySelectorAll("[name='price']");
@@ -43,13 +52,3 @@ $(document).ready(function () {
         return false;
     });
 });
-
-function calcTotal(){
-    let total = 0;
-    $("input[name='price']").each(function (e) {
-        if(this.value !== ''){
-            total += parseInt(this.value);
-        }
-    });
-    $('#total').text(total);
-}
