@@ -22,9 +22,11 @@ def invoice(request):
     udf.register_font()
     # CUSTOMER DATA
     now = datetime.now()
+    phone_number = request.POST.get('phone', '')
+    phone_number ='+91 ' + phone_number if len(phone_number) == 10 else phone_number
     dt_string = now.strftime("%d-%m-%Y")
     data = [[dt_string], [request.data['cname']],
-            ["+91 " + request.data['phone']]]
+            [phone_number]]
     udf.draw_customer_details(can, data)
     # ###### NUMBER PLATE #######
     can.setFont("CenturyGothicBold", 14)
