@@ -41,6 +41,7 @@ function resetForm() {
     $(".remove_this").each(function () {
         $(this).trigger("click");
     });
+    calcTotal();
     $("input[name='price']").removeClass('alignRight');
 }
 
