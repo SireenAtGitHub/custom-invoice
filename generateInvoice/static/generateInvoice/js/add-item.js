@@ -25,6 +25,7 @@ $(document).ready(function () {
         }
         calcTotal();
     });
+    
     function calcTotal(){
         let total = 0;
         $("input[name='price']").each(function (e) {
