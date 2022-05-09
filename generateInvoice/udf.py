@@ -1,11 +1,12 @@
 from PyPDF2 import PdfFileWriter, PdfFileReader
 import os
+from django.conf import settings
 from django.templatetags.static import static
 from reportlab.platypus import Table, TableStyle, Image
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.pdfmetrics import registerFontFamily
 from reportlab.pdfbase.ttfonts import TTFont
-
+from CustomINVOICE.settings import STATIC_ROOT
 
 def register_font():
     pdfmetrics.registerFont(TTFont('CenturyGothicBold', os.path.abspath(os.getcwd() + '/static/CenturyGothicBold.ttf')))
@@ -45,7 +46,10 @@ def draw_item_table(canvas, item_data):
 
 def rewrite_pdf(packet, response):
     new_pdf = PdfFileReader(packet)
-    existing_pdf = PdfFileReader(open(os.getcwd() + static('INVOICE.pdf'), "rb"))
+    if settings.DEBUG:
+        existing_pdf = PdfFileReader(open(os.getcwd() + static('invoice.pdf'), "rb"))
+    else:
+        existing_pdf = PdfFileReader(open(os.path.join(os.getcwd(), STATIC_ROOT, 'generateInvoice/pdf/invoice.pdf'), "rb"))
     output = PdfFileWriter()
     page = existing_pdf.getPage(0)
     page.mergePage(new_pdf.getPage(0))
