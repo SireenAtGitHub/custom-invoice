@@ -20,10 +20,14 @@ $(document).ready(function () {
         data["number_plate"] = plate;
         data["items"] = str;
         data["csrfmiddlewaretoken"] = "{{ csrf_token }}";
+        var spinner = '<div class="spinner-border" style="width: 2rem; height: 2rem;" role="status"><span class="sr-only">Loading...</span></div>&nbsp;&nbsp;Generating Invoice...';
         $.ajax({
             url: $("#url").val(),
             type: "POST",
             data: data,
+            beforeSend: function (){
+                $('#idForm').html(spinner);
+            },
             success: function (response) {
                 var binaryData = [];
                 binaryData.push(response);
@@ -43,6 +47,7 @@ function resetForm() {
     });
     $('#total').text(0);
     $("input[name='price']").removeClass('alignRight');
+    $("#idForm").text('Generate Invoice')
 }
 
 function generate_str(name, price) {

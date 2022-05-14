@@ -140,6 +140,9 @@ h1, h2, h3, h4, h5, h6 {
 #header .logo img {
   max-height: 40px;
 }
+#idForm{
+  width:270px;
+}
 @media (max-width: 992px) {
   #header .logo {
     font-size: 28px;
@@ -1682,4 +1685,17 @@ hr {
 .itemSR{
   text-align: center;
   font-size: large;
+}
+
+.rotate {
+  animation: rotation 3s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
