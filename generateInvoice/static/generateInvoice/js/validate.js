@@ -16,7 +16,7 @@ function validateForm() {
     document.getElementById("inputName").value = clean_name_val;
 
     num_val = document.getElementById("inputNPlate").value;
-    let clean_num_val = num_val.trim().replace(/\s+/g,"");
+    let clean_num_val = num_val.trim().replace(/\s+/g," ");
     if (clean_num_val == "") {
         alert("Number Plate field should not be empty");
         return true;
