@@ -1,4 +1,30 @@
 $(document).ready(function () {
+    $('#inputName').keyup(function() {
+        if ($(this).val() != ''){
+            $(this).removeClass('is-invalid');
+            $(this).addClass('is-valid');
+        }else{
+            $(this).removeClass('is-valid');
+            $(this).addClass('is-invalid');
+            $('.customer-name').text('This field is required!');
+        }
+    });
+    $('#inputNPlate').keyup(function() {
+        if ($(this).val() == ''){
+            $(this).removeClass('is-valid');
+            $(this).addClass('is-invalid');
+            $('.number-plate').text('This field is required!');
+        }else{
+            if($(this).val().length < 10){
+                $(this).removeClass('is-valid');
+                $(this).addClass('is-invalid');
+                $('.number-plate').text('Number plate field should contain atleast 10 characters!');
+            }else{
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+            }
+        }
+    });
     $("#inputPNumber").keypress(function () {
         if ($("#inputPNumber").val().length >= 10) {
             return false;
@@ -10,7 +36,7 @@ function validateForm() {
     name_val = document.getElementById("inputName").value;
     let clean_name_val = name_val.trim().replace(/\s+/g," ");
     if (clean_name_val == "") {
-        alert("Name field should not be empty");
+        $('#inputName').addClass('is-invalid');
         return true;
     }
     document.getElementById("inputName").value = clean_name_val;
@@ -18,11 +44,15 @@ function validateForm() {
     num_val = document.getElementById("inputNPlate").value;
     let clean_num_val = num_val.trim().replace(/\s+/g," ");
     if (clean_num_val == "") {
-        alert("Number Plate field should not be empty");
+        $('#inputNPlate').removeClass('is-valid');
+        $('#inputNPlate').addClass('is-invalid');
+        $('.number-plate').text('This field is required!');
         return true;
     } else {
         if (clean_num_val.length < 10) {
-            alert("Enter valid number plate");
+            $('#inputNPlate').removeClass('is-valid');
+            $('#inputNPlate').addClass('is-invalid');
+            $('.number-plate').text('Number plate field should contain atleast 10 characters!');
             return true;
         }
     }

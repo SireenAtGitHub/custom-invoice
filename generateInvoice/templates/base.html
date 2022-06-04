@@ -71,16 +71,22 @@
             <input type="hidden" value="{% url 'invoice' %}" id="url">
             <input type="hidden" value="{% url 'home' %}" id="home">
 
-        <form id="invoiceForm" method="post" enctype="multipart/form-data">
+        <form id="invoiceForm" method="post" enctype="multipart/form-data" class="needs-validation">
             {% csrf_token %}
             <div class="form-group">
                 <label for="inputName">Customer Name</label>
                 <input type="text" class="form-control" id="inputName" name="cname" placeholder="Enter Customer Name">
+                <div class="invalid-feedback">
+                    This field is required!
+                </div>
             </div>
             <div class="form-group">
                 <label for="inputNPlate">Vehicle Number</label>
                 <input type="text" class="form-control" id="inputNPlate" name="b_plate"
                     placeholder="Enter Vehicle Number">
+                <div class="invalid-feedback number-plate">
+                    This field is required!
+                </div>
             </div>
             <div class="form-group">
                 <label for="inputPNumber">Phone Number (Optional)</label>
