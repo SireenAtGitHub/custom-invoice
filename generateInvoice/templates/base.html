@@ -71,21 +71,30 @@
             <input type="hidden" value="{% url 'invoice' %}" id="url">
             <input type="hidden" value="{% url 'home' %}" id="home">
 
-        <form id="invoiceForm" method="post" enctype="multipart/form-data">
+        <form id="invoiceForm" method="post" enctype="multipart/form-data" class="needs-validation">
             {% csrf_token %}
             <div class="form-group">
                 <label for="inputName">Customer Name</label>
                 <input type="text" class="form-control" id="inputName" name="cname" placeholder="Enter Customer Name">
+                <div class="invalid-feedback">
+                    This field is required!
+                </div>
             </div>
             <div class="form-group">
                 <label for="inputNPlate">Vehicle Number</label>
                 <input type="text" class="form-control" id="inputNPlate" name="b_plate"
                     placeholder="Enter Vehicle Number">
+                <div class="invalid-feedback number-plate">
+                    This field is required!
+                </div>
             </div>
             <div class="form-group">
                 <label for="inputPNumber">Phone Number (Optional)</label>
-                <input type="number" class="form-control" id="inputPNumber" name="phone"
+                <input type="tel" class="form-control" id="inputPNumber" name="phone"
                     placeholder="Enter Phone Number" maxlength="10">
+                <div class="invalid-feedback phone-number">
+                   Phone number must be 10 numbers!
+                </div>
             </div>
             <hr class="mt-4 mb-4" style="border: 2px solid grey">
             <h4>Items</h4>
@@ -96,16 +105,16 @@
                     </div>
                     <div class="col-md-8 mb-3">
                         <!-- <label id=''>1. Item Name</label> -->
-                        <input type="text" class="form-control" placeholder="Enter Item Description" name="item">
-                        <div class="invalid-tooltip">
-                            Enter Item Description
+                        <input type="text" class="form-control item-name" placeholder="Enter Item Description" name="item">
+                        <div class="invalid-feedback item-feedback">
+                            This field is required!
                         </div>
                     </div>
                     <div class="col-md-2 mb-3">
                         <!-- <label>Item Price</label> -->
-                        <input type="number" class="form-control" placeholder="Enter Amount" name="price" max="">
-                        <div class="invalid-tooltip">
-                            Enter Amount
+                        <input type="number" class="form-control item-price" placeholder="Enter Amount" name="price" max="">
+                        <div class="invalid-feedback">
+                            Required Field!
                         </div>
                     </div>
                     <div class="col-md-1 mb-3">
@@ -168,16 +177,16 @@
             </div>
             <div class="col-md-8 mb-3">
                 <!-- <label id="item_label">Item Name</label> -->
-                     <input type="text" class="form-control" placeholder="Enter Item Description" name="item" id="item">
-                <div class="invalid-tooltip">
-                    Enter Item Description
+                     <input type="text" class="form-control item-name" placeholder="Enter Item Description" name="item" id="item">
+                <div class="invalid-feedback item-feedback">
+                    This is required field!
                 </div>
             </div>
             <div class="col-md-2 mb-3">
                 <!-- <label>Item Price</label> -->
-                <input type="number" class="form-control" placeholder="Enter Amount" name="price">
-                <div class="invalid-tooltip">
-                    Enter Amount
+                <input type="number" class="form-control item-price" placeholder="Enter Amount" name="price">
+                <div class="invalid-feedback">
+                    Required field!
                 </div>
             </div>
             <div class="col-md-1 mb-3">

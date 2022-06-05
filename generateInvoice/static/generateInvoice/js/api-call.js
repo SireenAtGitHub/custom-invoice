@@ -47,7 +47,11 @@ function resetForm() {
     });
     $('#total').text(0);
     $("input[name='price']").removeClass('alignRight');
-    $("#idForm").text('Generate Invoice')
+    $("#invoiceForm").each(function (){
+        $(this).find(':input').removeClass('is-valid');
+        $(this).find(':input').removeClass('is-invalid');
+    });
+    $("#idForm").text('Generate Invoice');
 }
 
 function generate_str(name, price) {
