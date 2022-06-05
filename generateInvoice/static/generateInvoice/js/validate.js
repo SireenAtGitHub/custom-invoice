@@ -45,7 +45,7 @@ $(document).ready(function () {
             if($(this).val() == ''){
                 $(this).removeClass('is-valid');
                 $(this).addClass('is-invalid');
-                $('.item-feedback').text("This is required field!");
+                $(this).next().text("This is required field!");
             }else{
                 $(this).removeClass('is-invalid');
                 $(this).addClass('is-valid');
@@ -54,7 +54,7 @@ $(document).ready(function () {
             if(item_name.includes("$") || item_name.includes("^")){
                 $(this).removeClass('is-valid');
                 $(this).addClass('is-invalid');
-                $('.item-feedback').text("Please do not enter '$' or '^'!");
+                $(this).next().text("Please do not enter '$' or '^'!");
             }
         });
     });
