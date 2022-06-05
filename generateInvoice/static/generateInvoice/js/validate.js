@@ -25,10 +25,54 @@ $(document).ready(function () {
             }
         }
     });
-    $("#inputPNumber").keypress(function () {
-        if ($("#inputPNumber").val().length >= 10) {
-            return false;
+    $("#inputPNumber").keyup(function () {
+        if($(this).val().length == 0){
+            $(this).removeClass('is-valid');
+            $(this).removeClass('is-invalid');
+        }else{
+            if ($(this).val().length != 0 && $(this).val().length < 10) {
+                $(this).removeClass('is-valid');
+                $(this).addClass('is-invalid');
+            }else{
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+            }
         }
+    });
+    $( document ).on( "keyup", ".item-name", function() {
+        $(this).each(function() {
+            item_name = $(this).val();
+            if($(this).val() == ''){
+                $(this).removeClass('is-valid');
+                $(this).addClass('is-invalid');
+                $('.item-feedback').text("This is required field!");
+            }else{
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+
+            }            
+            if(item_name.includes("$") || item_name.includes("^")){
+                $(this).removeClass('is-valid');
+                $(this).addClass('is-invalid');
+                $('.item-feedback').text("Please do not enter '$' or '^'!");
+            }
+        });
+    });
+    $( document ).on( "keyup", ".item-price", function() {
+        $(this).each(function() {
+            if($(this).val().length == 0){
+                $(this).removeClass('is-valid');
+                $(this).addClass('is-invalid');
+            }else{
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+            }
+        });
+    });
+    $("#inputPNumber").keypress(function () {
+        if ($(this).val().length >= 10) {
+            return false;
+        } 
     });
 });
 
@@ -61,7 +105,7 @@ function validateForm() {
     phone_num = $("#inputPNumber").val();
     let clean_phone_num = phone_num.trim().replace(/\s+/g,"");
     if (clean_phone_num.length < 10 && clean_phone_num.length != 0) {
-        alert("Enter valid phone number");
+        $("#inputPNumber").addClass('is-invalid');
         return true;
     }
     $("#inputPNumber").val(clean_phone_num);
@@ -71,11 +115,15 @@ function validateForm() {
         let itemName = $(this).val();
         let clean_itemName = itemName.trim().replace(/\s+/g," ");
         if (clean_itemName == "") {
-            alert("Fill item details");
+            $(this).removeClass('is-valid');
+            $(this).addClass('is-invalid');
+            $('.item-feedback').text("This field is required!");
             isInvalidItemName = true;
             return false;
         } else if (clean_itemName.includes("$") || clean_itemName.includes("^")) {
-            alert("Please do not enter $ or ^ in Item Name.");
+            $(this).removeClass('is-valid');
+            $(this).addClass('is-invalid');
+            $('.item-feedback').text("Please do not enter '$' or '^'!");
             isInvalidItemName = true;
             return false;
         }
@@ -90,7 +138,8 @@ function validateForm() {
         let itemPrice = $(this).val();
         let clean_itemPrice = itemPrice.trim().replace(/\s+/g,"");
         if (clean_itemPrice == "") {
-            alert("Fill price details");
+            $(this).removeClass('is-valid');
+            $(this).addClass('is-invalid');
             isInvalidItemPrice = true;
             return;
         }
