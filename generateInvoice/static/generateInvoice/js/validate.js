@@ -15,10 +15,10 @@ $(document).ready(function () {
             $(this).addClass('is-invalid');
             $('.number-plate').text('This field is required!');
         }else{
-            if($(this).val().length < 10){
+            if($(this).val().length < 9){
                 $(this).removeClass('is-valid');
                 $(this).addClass('is-invalid');
-                $('.number-plate').text('Number plate field should contain atleast 10 characters!');
+                $('.number-plate').text('Number plate field should contain atleast 9 characters!');
             }else{
                 $(this).removeClass('is-invalid');
                 $(this).addClass('is-valid');
@@ -93,10 +93,10 @@ function validateForm() {
         $('.number-plate').text('This field is required!');
         return true;
     } else {
-        if (clean_num_val.length < 10) {
+        if (clean_num_val.length < 9) {
             $('#inputNPlate').removeClass('is-valid');
             $('#inputNPlate').addClass('is-invalid');
-            $('.number-plate').text('Number plate field should contain atleast 10 characters!');
+            $('.number-plate').text('Number plate field should contain atleast 9 characters!');
             return true;
         }
     }
