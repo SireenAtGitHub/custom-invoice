@@ -6,12 +6,12 @@ from reportlab.platypus import Table, TableStyle, Image
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.pdfmetrics import registerFontFamily
 from reportlab.pdfbase.ttfonts import TTFont
-from CustomINVOICE.settings import STATIC_ROOT
+from CustomINVOICE.settings import PROJECT_NAME
 
 def register_font():
-    pdfmetrics.registerFont(TTFont('CenturyGothicBold', os.path.abspath(os.getcwd() + '//custom-invoice/static/CenturyGothicBold.ttf')))
+    pdfmetrics.registerFont(TTFont('CenturyGothicBold', os.path.abspath(os.getcwd() + '//' + PROJECT_NAME + '/static/CenturyGothicBold.ttf')))
     pdfmetrics.registerFont(
-        TTFont('CenturyGothicRegular', os.path.abspath(os.getcwd() + '//custom-invoice/static/CenturyGothicRegular.ttf')))
+        TTFont('CenturyGothicRegular', os.path.abspath(os.getcwd() + '//' + PROJECT_NAME + '/static/CenturyGothicRegular.ttf')))
     registerFontFamily('CenturyGothic', normal='CGRegular', bold='CGBold')
 
 
@@ -28,7 +28,7 @@ def draw_customer_details(canvas, data):
 
 
 def draw_item_table(canvas, item_data):
-    image = Image(os.path.abspath(os.getcwd() + '//custom-invoice/static/1649230731942.png'), height=110, width=146)
+    image = Image(os.path.abspath(os.getcwd() + '//' + PROJECT_NAME + '/static/1649230731942.png'), height=110, width=146)
     t_image = Table([[image]])
     t_image.wrapOn(canvas, 400, 100)
     t_image.drawOn(canvas, 37, 655)
@@ -46,7 +46,7 @@ def draw_item_table(canvas, item_data):
 
 def rewrite_pdf(packet, response):
     new_pdf = PdfFileReader(packet)
-    existing_pdf = PdfFileReader(open(os.path.abspath(os.getcwd() + '/custom-invoice/static/INVOICE.pdf'), "rb"))
+    existing_pdf = PdfFileReader(open(os.path.abspath(os.getcwd() + PROJECT_NAME + '/static/INVOICE.pdf'), "rb"))
     # if settings.DEBUG:
     #     existing_pdf = PdfFileReader(open(os.getcwd() + '/custom-invoice' + static('invoice.pdf'), "rb"))
     # else:
