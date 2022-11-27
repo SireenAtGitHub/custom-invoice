@@ -46,7 +46,7 @@ def draw_item_table(canvas, item_data):
 
 def rewrite_pdf(packet, response):
     new_pdf = PdfFileReader(packet)
-    existing_pdf = PdfFileReader(open(os.path.abspath(os.getcwd() + PROJECT_NAME + '/static/INVOICE.pdf'), "rb"))
+    existing_pdf = PdfFileReader(open(os.path.abspath(os.getcwd() + '/' + PROJECT_NAME + '/static/INVOICE.pdf'), "rb"))
     # if settings.DEBUG:
     #     existing_pdf = PdfFileReader(open(os.getcwd() + '/custom-invoice' + static('invoice.pdf'), "rb"))
     # else:
