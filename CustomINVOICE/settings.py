@@ -99,7 +99,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-django_heroku.settings(locals())
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
