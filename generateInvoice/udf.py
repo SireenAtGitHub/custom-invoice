@@ -9,9 +9,9 @@ from reportlab.pdfbase.ttfonts import TTFont
 from CustomINVOICE.settings import STATIC_ROOT
 
 def register_font():
-    pdfmetrics.registerFont(TTFont('CenturyGothicBold', os.path.abspath(os.getcwd() + 'custom-invoice/static/CenturyGothicBold.ttf')))
+    pdfmetrics.registerFont(TTFont('CenturyGothicBold', os.path.abspath(os.getcwd() + '/custom-invoice/static/CenturyGothicBold.ttf')))
     pdfmetrics.registerFont(
-        TTFont('CenturyGothicRegular', os.path.abspath(os.getcwd() + 'custom-invoice/static/CenturyGothicRegular.ttf')))
+        TTFont('CenturyGothicRegular', os.path.abspath(os.getcwd() + '/custom-invoice/static/CenturyGothicRegular.ttf')))
     registerFontFamily('CenturyGothic', normal='CGRegular', bold='CGBold')
 
 
@@ -28,7 +28,7 @@ def draw_customer_details(canvas, data):
 
 
 def draw_item_table(canvas, item_data):
-    image = Image(os.path.abspath(os.getcwd() + 'custom-invoice/static/1649230731942.png'), height=110, width=146)
+    image = Image(os.path.abspath(os.getcwd() + '/custom-invoice/static/1649230731942.png'), height=110, width=146)
     t_image = Table([[image]])
     t_image.wrapOn(canvas, 400, 100)
     t_image.drawOn(canvas, 37, 655)
