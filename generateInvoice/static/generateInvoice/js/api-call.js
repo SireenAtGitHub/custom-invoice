@@ -12,20 +12,21 @@ $(document).ready(function () {
         c_name = $("#inputName").val();
         plate = $("#inputNPlate").val();
         p_number = $("#inputPNumber").val();
-        str = generate_str(names, price);
-        data["cname"] = c_name;
-        if (p_number.length == 10){
+        str = generate_services_object(names, price);
+        data["customerName"] = c_name;
+        if (p_number.length == 10) {
             data["phone"] = p_number;
         }
-        data["number_plate"] = plate;
-        data["items"] = str;
+        data["numberPlate"] = plate;
+        data["services"] = str;
         data["csrfmiddlewaretoken"] = "{{ csrf_token }}";
         var spinner = '<div class="spinner-border" style="width: 2rem; height: 2rem;" role="status"><span class="sr-only">Loading...</span></div>&nbsp;&nbsp;Generating Invoice...';
         $.ajax({
             url: $("#url").val(),
             type: "POST",
-            data: data,
-            beforeSend: function (){
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            beforeSend: function () {
                 $('#idForm').html(spinner);
             },
             success: function (response) {
@@ -40,25 +41,26 @@ $(document).ready(function () {
         });
     });
 });
-function resetForm() { 
+function resetForm() {
     $("#invoiceForm").trigger("reset");
     $(".remove_this").each(function () {
         $(this).trigger("click");
     });
     $('#total').text(0);
     $("input[name='price']").removeClass('alignRight');
-    $("#invoiceForm").each(function (){
+    $("#invoiceForm").each(function () {
         $(this).find(':input').removeClass('is-valid');
         $(this).find(':input').removeClass('is-invalid');
     });
     $("#idForm").text('Generate Invoice');
 }
 
-function generate_str(name, price) {
+function generate_services_object(name, price) {
     name_split = name.split("&");
     price_split = price.split("&");
     name_array = [];
     price_array = [];
+    const services = [];
     for (let i = 0; i < name_split.length; i++) {
         ns_split = name_split[i].split("=");
         ps_split = price_split[i].split("=");
@@ -67,10 +69,10 @@ function generate_str(name, price) {
             price_array.push(ps_split[j]);
         }
     }
-    str = "";
-    for (let i = 0; i < price_array.length; i++) {
-        str += name_array[i] + " ^ " + price_array[i];
-        str += " $ ";
+    for(let i = 0; i < price_array.length; i++){
+        const service = {serviceName: name_array[i], serviceCharge: Number(price_array[i])}
+        services.push(service)
     }
-    return str;
+    console.log(services)
+    return services;
 }

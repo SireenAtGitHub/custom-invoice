@@ -71,80 +71,83 @@
             <input type="hidden" value="{% url 'invoice' %}" id="url">
             <input type="hidden" value="{% url 'home' %}" id="home">
 
-        <form id="invoiceForm" method="post" enctype="multipart/form-data" class="needs-validation">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="inputName">Customer Name</label>
-                <input type="text" class="form-control" id="inputName" name="cname" placeholder="Enter Customer Name">
-                <div class="invalid-feedback">
-                    This field is required!
+            <form id="invoiceForm" method="post" enctype="multipart/form-data" class="needs-validation">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="inputName" class="required">Customer Name</label>
+                    <input type="text" class="form-control" id="inputName" name="cname"
+                        placeholder="Enter Customer Name">
+                    <div class="invalid-feedback">
+                        This field is required.
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="inputNPlate">Vehicle Number</label>
-                <input type="text" class="form-control" id="inputNPlate" name="b_plate"
-                    placeholder="Enter Vehicle Number">
-                <div class="invalid-feedback number-plate">
-                    This field is required!
+                <div class="form-group">
+                    <label for="inputNPlate" class="required">Vehicle Number</label>
+                    <input type="text" class="form-control" id="inputNPlate" name="b_plate"
+                        placeholder="Enter Vehicle Number">
+                    <div class="invalid-feedback number-plate">
+                        This field is required.
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="inputPNumber">Phone Number (Optional)</label>
-                <input type="number" class="form-control" id="inputPNumber" name="phone"
-                    placeholder="Enter Phone Number" maxlength="10">
-                <div class="invalid-feedback phone-number">
-                   Phone number must be 10 numbers!
+                <div class="form-group">
+                    <label for="inputPNumber">Phone Number (Optional)</label>
+                    <input type="number" class="form-control" id="inputPNumber" name="phone"
+                        placeholder="Enter Phone Number" maxlength="10">
+                    <div class="invalid-feedback phone-number">
+                        Please enter a 10-digit phone number.
+                    </div>
                 </div>
-            </div>
-            <hr class="mt-4 mb-4" style="border: 2px solid grey">
-            <h4>Items</h4>
-            <div id="itemRows">
+                <hr class="mt-4 mb-4" style="border: 2px solid grey">
+                <h4>Services</h4>
+                <div id="itemRows">
+                    <div class="row">
+                        <div class="col-md-2 mb-3 align-self-center itemSR" style="text-align: left;">
+                            Service 1.
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <!-- <label id=''>1. Item Name</label> -->
+                            <input type="text" class="form-control service-name" placeholder="Enter Service Description"
+                                name="item">
+                            <div class="invalid-feedback item-feedback">
+                                This field is required.
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <!-- <label>Item Price</label> -->
+                            <input type="number" class="form-control item-price" placeholder="Enter Service Charge" name="price"
+                                max="">
+                            <div class="invalid-feedback">
+                                This field is required.
+                            </div>
+                        </div>
+                        <div class="col-md-1 mb-3">
+
+                        </div>
+                        <!-- <hr> -->
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="col-md-1 mb-3 align-self-center itemSR">
-                        Item 1.
+                    <div class="col-md-9 alignRight largerSize">
+                        Total Amount
                     </div>
-                    <div class="col-md-8 mb-3">
-                        <!-- <label id=''>1. Item Name</label> -->
-                        <input type="text" class="form-control item-name" placeholder="Enter Item Description" name="item">
-                        <div class="invalid-feedback item-feedback">
-                            This field is required!
-                        </div>
-                    </div>
-                    <div class="col-md-2 mb-3">
-                        <!-- <label>Item Price</label> -->
-                        <input type="number" class="form-control item-price" placeholder="Enter Amount" name="price" max="">
-                        <div class="invalid-feedback">
-                            Required Field!
-                        </div>
-                    </div>
-                    <div class="col-md-1 mb-3">
-    
-                    </div>
-                    <!-- <hr> -->
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-9 alignRight largerSize">
-                    Total Amount
-                </div>
-                <div class="col-md-2 mb-3">
-                    <!-- <h3> -->
+                    <div class="col-md-3 mb-3">
+                        <!-- <h3> -->
                         <!-- <button type="button" class="btn btn-info" id="c_total">Count Total</button> -->
                         <span class="badge badge-success largerSize alignRight" id="total">0</span>
-                    <!-- </h3> -->
-                </div>
-                <div class="col-md-1 mb-3">
+                        <!-- </h3> -->
+                    </div>
+                    <div class="col-md-1 mb-3">
 
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="mb-2">
-                <button type="button" class="btn btn-secondary" id="append">+ Add Item</button>
-            </div>
-            <button type="submit" class="btn btn-lg btn-primary mb-4 mt-3" id="idForm">
-                Generate Invoice
-            </button>
-        </form>
+                <hr>
+                <div class="mb-2">
+                    <button type="button" class="btn btn-secondary" id="append">+ Add Service</button>
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary mb-4 mt-3" id="idForm">
+                    Generate Invoice
+                </button>
+            </form>
 
         </div>
 
@@ -172,27 +175,29 @@
     <script src="{% static 'generateInvoice/js/validate.js' %}"></script>
     <script id="data_id" type="text/plain">
         <div class="row">
-            <div class="col-md-1 mb-3 align-self-center itemSR">
+            <div class="col-md-2 mb-3 align-self-center itemSR" style="text-align: left;">
                 2.
             </div>
-            <div class="col-md-8 mb-3">
-                <!-- <label id="item_label">Item Name</label> -->
-                     <input type="text" class="form-control item-name" placeholder="Enter Item Description" name="item" id="item">
+            <div class="col-md-7 mb-3">
+                <!-- <label id=''>1. Item Name</label> -->
+                <input type="text" class="form-control service-name" placeholder="Enter Service Description"
+                    name="item">
                 <div class="invalid-feedback item-feedback">
-                    This is required field!
+                    This field is required.
                 </div>
             </div>
-            <div class="col-md-2 mb-3">
+            <div class="col-md-3 mb-3">
                 <!-- <label>Item Price</label> -->
-                <input type="number" class="form-control item-price" placeholder="Enter Amount" name="price">
+                <input type="number" class="form-control item-price" placeholder="Enter Service Charge" name="price"
+                    max="">
                 <div class="invalid-feedback">
-                    Required field!
+                    This field is required.
                 </div>
             </div>
             <div class="col-md-1 mb-3">
-                <!-- <label>Delete</label> -->
-                <button type="button" class="btn btn-danger remove_this" id="remove"><span class="bi bi-trash"></span></button>
+
             </div>
+            <!-- <hr> -->
         </div>
 </script>
 </body>

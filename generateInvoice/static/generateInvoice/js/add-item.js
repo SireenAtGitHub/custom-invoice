@@ -3,33 +3,33 @@ $(document).ready(function () {
         e.preventDefault();
         var elms = document.querySelectorAll("[id='item']");
         if (elms.length > 23) {
-            alert("You can not add more than 25 items.");
+            alert("You can not add more than 25 services.");
             return false;
         }
         var text = $("#data_id").html();
         $("#itemRows").append(text);
         rearrangeSR();
     });
-    function rearrangeSR(){
+    function rearrangeSR() {
         var elms = document.querySelectorAll(".itemSR");
         for (var i = 1; i < elms.length; i++) {
-            elms[i].childNodes[0].nodeValue = "Item " + (i + 1) + ".";
+            elms[i].childNodes[0].nodeValue = "Service " + (i + 1) + ".";
         }
     }
 
-    $(document).on("keyup","input[name='price']",function(e){
-        if(e.target.value !== ''){
+    $(document).on("keyup", "input[name='price']", function (e) {
+        if (e.target.value !== '') {
             e.target.classList.add('alignRight')
-        }else{
+        } else {
             e.target.classList.remove('alignRight')
         }
         calcTotal();
     });
-    
-    function calcTotal(){
+
+    function calcTotal() {
         let total = 0;
         $("input[name='price']").each(function (e) {
-            if(this.value !== ''){
+            if (this.value !== '') {
                 total += parseInt(this.value);
             }
         });
