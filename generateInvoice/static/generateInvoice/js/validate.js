@@ -1,69 +1,63 @@
 $(document).ready(function () {
-    $('#inputName').keyup(function() {
-        if ($(this).val() != ''){
+    $('#inputName').keyup(function () {
+        if ($(this).val() != '') {
             $(this).removeClass('is-invalid');
             $(this).addClass('is-valid');
-        }else{
+        } else {
             $(this).removeClass('is-valid');
             $(this).addClass('is-invalid');
-            $('.customer-name').text('This field is required!');
+            $('.customer-name').text('This field is required.');
         }
     });
-    $('#inputNPlate').keyup(function() {
-        if ($(this).val() == ''){
+    $('#inputNPlate').focusout(function () {
+        if ($(this).val() == '') {
             $(this).removeClass('is-valid');
             $(this).addClass('is-invalid');
-            $('.number-plate').text('This field is required!');
-        }else{
-            if($(this).val().length < 9){
+            $('.number-plate').text('This field is required.');
+        } else {
+            if ($(this).val().length < 9) {
                 $(this).removeClass('is-valid');
                 $(this).addClass('is-invalid');
                 $('.number-plate').text('Number plate field should contain atleast 9 characters!');
-            }else{
+            } else {
                 $(this).removeClass('is-invalid');
                 $(this).addClass('is-valid');
             }
         }
     });
-    $("#inputPNumber").keyup(function () {
-        if($(this).val().length == 0){
+    $("#inputPNumber").focusout(function () {
+        if ($(this).val().length == 0) {
             $(this).removeClass('is-valid');
             $(this).removeClass('is-invalid');
-        }else{
+        } else {
             if ($(this).val().length != 0 && $(this).val().length < 10) {
                 $(this).removeClass('is-valid');
                 $(this).addClass('is-invalid');
-            }else{
+            } else {
                 $(this).removeClass('is-invalid');
                 $(this).addClass('is-valid');
             }
         }
     });
-    $( document ).on( "keyup", ".item-name", function() {
-        $(this).each(function() {
+    $(document).on("keyup", ".item-name", function () {
+        $(this).each(function () {
             item_name = $(this).val();
-            if($(this).val() == ''){
+            if ($(this).val() == '') {
                 $(this).removeClass('is-valid');
                 $(this).addClass('is-invalid');
-                $(this).next().text("This is required field!");
-            }else{
+                $(this).next().text("This field is required.");
+            } else {
                 $(this).removeClass('is-invalid');
                 $(this).addClass('is-valid');
-
-            }            
-            if(item_name.includes("$") || item_name.includes("^")){
-                $(this).removeClass('is-valid');
-                $(this).addClass('is-invalid');
-                $(this).next().text("Please do not enter '$' or '^'!");
             }
         });
     });
-    $( document ).on( "keyup", ".item-price", function() {
-        $(this).each(function() {
-            if($(this).val().length == 0){
+    $(document).on("keyup", ".item-price", function () {
+        $(this).each(function () {
+            if ($(this).val().length == 0) {
                 $(this).removeClass('is-valid');
                 $(this).addClass('is-invalid');
-            }else{
+            } else {
                 $(this).removeClass('is-invalid');
                 $(this).addClass('is-valid');
             }
@@ -72,13 +66,13 @@ $(document).ready(function () {
     $("#inputPNumber").keypress(function () {
         if ($(this).val().length >= 10) {
             return false;
-        } 
+        }
     });
 });
 
 function validateForm() {
     name_val = document.getElementById("inputName").value;
-    let clean_name_val = name_val.trim().replace(/\s+/g," ");
+    let clean_name_val = name_val.trim().replace(/\s+/g, " ");
     if (clean_name_val == "") {
         $('#inputName').addClass('is-invalid');
         return true;
@@ -86,11 +80,11 @@ function validateForm() {
     document.getElementById("inputName").value = clean_name_val;
 
     num_val = document.getElementById("inputNPlate").value;
-    let clean_num_val = num_val.trim().replace(/\s+/g," ");
+    let clean_num_val = num_val.trim().replace(/\s+/g, " ");
     if (clean_num_val == "") {
         $('#inputNPlate').removeClass('is-valid');
         $('#inputNPlate').addClass('is-invalid');
-        $('.number-plate').text('This field is required!');
+        $('.number-plate').text('This field is required.');
         return true;
     } else {
         if (clean_num_val.length < 9) {
@@ -103,7 +97,7 @@ function validateForm() {
     document.getElementById("inputNPlate").value = clean_num_val;
 
     phone_num = $("#inputPNumber").val();
-    let clean_phone_num = phone_num.trim().replace(/\s+/g,"");
+    let clean_phone_num = phone_num.trim().replace(/\s+/g, "");
     if (clean_phone_num.length < 10 && clean_phone_num.length != 0) {
         $("#inputPNumber").addClass('is-invalid');
         return true;
@@ -113,17 +107,11 @@ function validateForm() {
     var isInvalidItemName = false;
     $("input[name='item']").each(function () {
         let itemName = $(this).val();
-        let clean_itemName = itemName.trim().replace(/\s+/g," ");
+        let clean_itemName = itemName.trim().replace(/\s+/g, " ");
         if (clean_itemName == "") {
             $(this).removeClass('is-valid');
             $(this).addClass('is-invalid');
-            $('.item-feedback').text("This field is required!");
-            isInvalidItemName = true;
-            return false;
-        } else if (clean_itemName.includes("$") || clean_itemName.includes("^")) {
-            $(this).removeClass('is-valid');
-            $(this).addClass('is-invalid');
-            $('.item-feedback').text("Please do not enter '$' or '^'!");
+            $('.item-feedback').text("This field is required.");
             isInvalidItemName = true;
             return false;
         }
@@ -136,7 +124,7 @@ function validateForm() {
     var isInvalidItemPrice = false;
     $("input[name='price']").each(function () {
         let itemPrice = $(this).val();
-        let clean_itemPrice = itemPrice.trim().replace(/\s+/g,"");
+        let clean_itemPrice = itemPrice.trim().replace(/\s+/g, "");
         if (clean_itemPrice == "") {
             $(this).removeClass('is-valid');
             $(this).addClass('is-invalid');
