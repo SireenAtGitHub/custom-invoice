@@ -104,7 +104,7 @@
                         <div class="col-md-2 mb-3 align-self-center itemSR" style="text-align: left;">
                             Service 1.
                         </div>
-                        <div class="col-md-7 mb-3">
+                        <div class="col-md-6 mb-3">
                             <!-- <label id=''>1. Item Name</label> -->
                             <input type="text" class="form-control service-name" placeholder="Enter Service Description"
                                 name="item">
@@ -114,8 +114,8 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <!-- <label>Item Price</label> -->
-                            <input type="number" class="form-control item-price" placeholder="Enter Service Charge" name="price"
-                                max="">
+                            <input type="number" class="form-control item-price" placeholder="Enter Service Charge"
+                                name="price" max="">
                             <div class="invalid-feedback">
                                 This field is required.
                             </div>
@@ -127,7 +127,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-9 alignRight largerSize">
+                    <div class="col-md-8 alignRight largerSize">
                         Total Amount
                     </div>
                     <div class="col-md-3 mb-3">
@@ -178,10 +178,10 @@
             <div class="col-md-2 mb-3 align-self-center itemSR" style="text-align: left;">
                 2.
             </div>
-            <div class="col-md-7 mb-3">
+            <div class="col-md-6 mb-3">
                 <!-- <label id=''>1. Item Name</label> -->
                 <input type="text" class="form-control service-name" placeholder="Enter Service Description"
-                    name="item">
+                    name="item" id="item">
                 <div class="invalid-feedback item-feedback">
                     This field is required.
                 </div>
@@ -195,7 +195,8 @@
                 </div>
             </div>
             <div class="col-md-1 mb-3">
-
+                <!-- <label>Delete</label> -->
+                <button type="button" class="btn btn-danger remove_this" id="remove"><span class="bi bi-trash"></span></button>
             </div>
             <!-- <hr> -->
         </div>
