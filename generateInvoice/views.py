@@ -22,7 +22,7 @@ def invoice(request):
     udf.register_font()
     # CUSTOMER DATA
     now = datetime.now()
-    phone_number = request.POST.get("phone", "")
+    phone_number = request.data.get("phone", "")
     phone_number = (
         "+91 " + phone_number[0:5] + " " + phone_number[5:10]
         if len(phone_number) == 10

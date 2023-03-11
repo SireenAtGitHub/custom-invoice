@@ -48,10 +48,8 @@ function resetForm() {
     });
     $('#total').text(0);
     $("input[name='price']").removeClass('alignRight');
-    $("#invoiceForm").each(function () {
-        $(this).find(':input').removeClass('is-valid');
-        $(this).find(':input').removeClass('is-invalid');
-    });
+    $("#invoiceForm").find(':input').removeClass('is-valid');
+    $("#invoiceForm").find(':input').removeClass('is-invalid');
     $("#idForm").text('Generate Invoice');
 }
 
