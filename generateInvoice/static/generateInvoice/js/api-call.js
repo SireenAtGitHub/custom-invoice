@@ -67,8 +67,8 @@ function generate_services_object(name, price) {
             price_array.push(ps_split[j]);
         }
     }
-    for(let i = 0; i < price_array.length; i++){
-        const service = {serviceName: name_array[i], serviceCharge: Number(price_array[i])}
+    for (let i = 0; i < price_array.length; i++) {
+        const service = { serviceName: name_array[i], serviceCharge: Number(price_array[i]) }
         services.push(service)
     }
     console.log(services)

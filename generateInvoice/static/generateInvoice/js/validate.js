@@ -3,24 +3,24 @@ $(document).ready(function () {
         if ($(this).val() == '') {
             makeInvalid(this);
         } else {
-            makeValid(this);            
+            makeValid(this);
         }
     });
     $('#inputNPlate').focusout(function () {
         if ($(this).val() == '') {
             makeInvalid(this);
-        }else if ($(this).val().length < 9) {
-            makeInvalid(this,'Number plate field should contain atleast 9 characters!');
-        }else {
+        } else if ($(this).val().length < 9) {
+            makeInvalid(this, 'Number plate field should contain atleast 9 characters!');
+        } else {
             makeValid(this);
         }
     });
     $("#inputPNumber").focusout(function () {
         if ($(this).val().length == 0) {
             makeNuetral(this);
-        }else if ($(this).val().length != 0 && $(this).val().length < 10) {
-            makeInvalid(this,'Please enter a 10-digit phone number.');
-        }else {
+        } else if ($(this).val().length != 0 && $(this).val().length < 10) {
+            makeInvalid(this, 'Please enter a 10-digit phone number.');
+        } else {
             makeValid(this);
         }
     });
@@ -44,16 +44,16 @@ $(document).ready(function () {
         }
     });
 });
-function makeNuetral(element){
+function makeNuetral(element) {
     $(element).removeClass('is-valid');
     $(element).removeClass('is-invalid');
 }
-function makeInvalid(element, errorMessage='This field is required.'){
+function makeInvalid(element, errorMessage = 'This field is required.') {
     $(element).addClass('is-invalid');
     $(element).removeClass('is-valid');
     $(element).next('.invalid-feedback').text(errorMessage);
 }
-function makeValid(element){
+function makeValid(element) {
     $(element).removeClass('is-invalid');
     $(element).addClass('is-valid');
 }
@@ -64,7 +64,7 @@ function validateForm() {
     if (clean_name_val == "") {
         makeInvalid($('#inputName'));
         isInvalidCustomerName = true;
-    }else{
+    } else {
         makeValid($('#inputName'));
     }
     document.getElementById("inputName").value = clean_name_val;
@@ -75,10 +75,10 @@ function validateForm() {
     if (clean_num_val == "") {
         makeInvalid($('#inputNPlate'));
         isInvalidNPlate = true;
-    }else if (clean_num_val.length < 9) {
-        makeInvalid($('#inputNPlate'),'Number plate field should contain atleast 9 characters!');
+    } else if (clean_num_val.length < 9) {
+        makeInvalid($('#inputNPlate'), 'Number plate field should contain atleast 9 characters!');
         isInvalidNPlate = true;
-    }else{
+    } else {
         makeValid($('#inputNPlate'));
     }
     document.getElementById("inputNPlate").value = clean_num_val;
@@ -87,7 +87,7 @@ function validateForm() {
     phone_num = $("#inputPNumber").val();
     clean_phone_num = phone_num.trim().replace(/\s+/g, "");
     if (clean_phone_num.length < 10 && clean_phone_num.length != 0) {
-        makeInvalid($("#inputPNumber"),'Please enter a 10-digit phone number.');
+        makeInvalid($("#inputPNumber"), 'Please enter a 10-digit phone number.');
         isInvalidPNumber = true;
     }
     $("#inputPNumber").val(clean_phone_num);
@@ -99,7 +99,7 @@ function validateForm() {
         if (clean_itemName == "") {
             makeInvalid(this);
             isInvalidItemName = true;
-        }else{
+        } else {
             makeValid(this);
         }
         $(this).val(clean_itemName);
@@ -112,7 +112,7 @@ function validateForm() {
         if (clean_itemPrice == "") {
             makeInvalid(this);
             isInvalidItemPrice = true;
-        }else{
+        } else {
             makeValid(this);
         }
         $(this).val(clean_itemPrice);
